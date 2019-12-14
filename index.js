@@ -3,6 +3,7 @@ const jsdom = require("jsdom");
 let Author = require('./Models/Author');
 let Story = require('./Models/Story');
 const Promise = require("bluebird");
+const fs = require('fs');
 const { JSDOM } = jsdom;
 
 const url = process.env.SCRAPPING_URL || 'https://news.ycombinator.com/';
@@ -22,6 +23,7 @@ async function scrape(url) {
         await parseHTMLString(htmlString);
 
         stories = mergeResults();
+        writeToFile(stories);
         console.log(stories);
         await Promise.map(
             stories,
@@ -31,8 +33,10 @@ async function scrape(url) {
             {concurrency: 1}
         );
         //await stories[0].author.loadKarmaPoints();
+        writeToFile(stories);
         console.log(stories);
         console.log('done');
+        return stories;
     }
     catch(err) {
         console.error(err);
@@ -157,4 +161,70 @@ function mergeResults () {
     return stories;
 }
 
-scrape(url);
+// Not doing deep level handling, just logging error for now.
+function writeToFile(stories) {
+    fs.writeFile('output.json', JSON.stringify(stories), err => {
+        if (err)
+            console.error(err);
+    });
+}
+
+function sortByComments(data, order = 'desc') {
+    let sortedStories = data.sort((a, b) => {
+        let comparison = -1;
+        if (order == 'desc') {
+            if (a._commentCount < b._commentCount) {
+                comparison = 1;
+            }
+            else {
+                comparison = -1;
+            }
+        }
+        else if (order == 'asc'){
+            if (a._commentCount > b._commentCount) {
+                comparison = 1;
+            }
+            else {
+                comparison = -1;
+            }
+        }
+
+        return comparison;
+    });
+
+    return sortedStories;
+}
+
+function sortByAuthors (data, order) {
+    let sortedStories = data.sort((a, b) => {
+        let comparison = -1;
+        if (order == 'desc') {
+            if (a.author._karmaPoints < b.author._karmaPoints) {
+                comparison = 1;
+            }
+            else {
+                comparison = -1;
+            }
+        }
+        else if (order == 'asc'){
+            if (a.author._karmaPoints > b.author._karmaPoints) {
+                comparison = 1;
+            }
+            else {
+                comparison = -1;
+            }
+        }
+
+        return comparison;
+    });
+
+    return sortedStories;
+}
+
+//scrape(url);
+
+module.exports = {
+    scrape,
+    sortByComments,
+    sortByAuthors
+};
