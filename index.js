@@ -89,7 +89,6 @@ async function parseTableRows (rows, rowToScrape = 2) {
 
 async function parseCells (cells) {
     let totalCells = cells.length;
-    console.log('total cells: ' + totalCells);
     // if we have 3 cells, it is a new story
     if (totalCells === 3) {
         let htmlString = cells[2].innerHTML;
@@ -123,7 +122,6 @@ function parseStoryContent (htmlString, type) {
 
     if (type == TYPE_TITLE) {
         let title = domTree.window.document.getElementsByClassName('storylink')[0].text;
-        console.log(title);
         titles.push(title);
     }
     else if (type == TYPE_AUTHOR) {
@@ -131,13 +129,13 @@ function parseStoryContent (htmlString, type) {
         let totalAnchors = anchors.length;
 
         if (totalAnchors === 4) {
-            console.log(`total anchors: ${anchors.length}`);
             authors.push({ name: anchors[0].text, url: `${domainHost}${anchors[0].href}` });
             comments.push(anchors[3].text);
         }
     }
 }
 
+// this function cleans the data and merges different arrays to story objects
 function mergeResults () {
     let stories = [];
     titles.forEach((title, index) => {
