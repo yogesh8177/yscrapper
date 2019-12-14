@@ -199,7 +199,7 @@ function sortByAuthors (data, order) {
     let sortedStories = data.sort((a, b) => {
         let comparison = -1;
         if (order == 'desc') {
-            if (a.author._karmaPoints < b.author._karmaPoints) {
+            if (a._author._karmaPoints < b._author._karmaPoints) {
                 comparison = 1;
             }
             else {
@@ -207,7 +207,7 @@ function sortByAuthors (data, order) {
             }
         }
         else if (order == 'asc'){
-            if (a.author._karmaPoints > b.author._karmaPoints) {
+            if (a._author._karmaPoints > b._author._karmaPoints) {
                 comparison = 1;
             }
             else {

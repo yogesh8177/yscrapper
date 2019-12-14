@@ -23,30 +23,30 @@ const server = http.createServer(async (req, res) => {
   else if (req.url == '/sort/authors/asc') {
     let storiesRaw = fs.readFileSync('output.json');
     let storiesJson = JSON.parse(storiesRaw);
-    let sortedStoties = sortByAuthors(storiesJson, 'asc');
+    let sortedStories = sortByAuthors(storiesJson, 'asc');
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({status: 'top authors'}));
+    res.end(JSON.stringify({data: sortedStories}));
   }
   else if (req.url == '/sort/authors/desc') {
     let storiesRaw = fs.readFileSync('output.json');
     let storiesJson = JSON.parse(storiesRaw);
-    let sortedStoties = sortByAuthors(storiesJson, 'desc');
+    let sortedStories = sortByAuthors(storiesJson, 'desc');
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({status: 'top authors'}));
+    res.end(JSON.stringify({data: sortedStories}));
   }
   else if (req.url == '/sort/comments/asc') {
     let storiesRaw = fs.readFileSync('output.json');
     let storiesJson = JSON.parse(storiesRaw);
-    let sortedStoties = sortByComments(storiesJson, 'asc');
+    let sortedStories = sortByComments(storiesJson, 'asc');
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({data: sortedStoties}));
+    res.end(JSON.stringify({data: sortedStories}));
   }
   else if (req.url == '/sort/comments/desc') {
     let storiesRaw = fs.readFileSync('output.json');
     let storiesJson = JSON.parse(storiesRaw);
-    let sortedStoties = sortByComments(storiesJson, 'desc');
+    let sortedStories = sortByComments(storiesJson, 'desc');
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({data: sortedStoties}));
+    res.end(JSON.stringify({data: sortedStories}));
   }
 });
 
