@@ -33,15 +33,11 @@ This page will scrape `ycombinator` news page to get top stories and top authors
 
 # Output
 
-1. Sorted by comments ascending
-[comments_asc](./Output/comments_asc.png)
-<img src="./Output/comments_asc.png">
-1. Sorted by comments descending
-[comments_desc](./Output/comments_desc.png)
-<img src="./Output/comments_desc.png">
-1. Sorted by authors, ascending karma points
-[authors_asc](./Output/authors_asc.png)
+1. Sorted by comments ascending [comments_asc](./Output/comments_asc.png) <img src="./Output/comments_asc.png">
+
+1. Sorted by comments descending [comments_desc](./Output/comments_desc.png) <img src="./Output/comments_desc.png">
+
+1. Sorted by authors, ascending karma points [authors_asc](./Output/authors_asc.png)
 <img src="./Output/authors_asc.png">
-1. Sorted by authors, descending karma points
-[authors_desc](./Output/authors_desc.png)
-<img src="./Output/authors_desc.png">
+
+1. Sorted by authors, descending karma points [authors_desc](./Output/authors_desc.png) <img src="./Output/authors_desc.png">
