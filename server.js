@@ -1,7 +1,7 @@
 const http = require('http');
-const scrape = require('./index').scrape;
-const sortByComments = require('./index').sortByComments;
-const sortByAuthors = require('./index').sortByAuthors;
+const scrape = require('./worker').scrape;
+const sortByComments = require('./worker').sortByComments;
+const sortByAuthors = require('./worker').sortByAuthors;
 const fs = require('fs');
 
 const hostname = '127.0.0.1';
