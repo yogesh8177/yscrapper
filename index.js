@@ -23,7 +23,6 @@ async function scrape(url) {
         await parseHTMLString(htmlString);
 
         stories = mergeResults();
-        writeToFile(stories);
         console.log(stories);
         await Promise.map(
             stories,

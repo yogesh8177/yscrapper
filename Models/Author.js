@@ -50,7 +50,8 @@ class Author {
 
             let contentCells = contentRows[2].cells;
             let contentHtmlString = contentCells[1].innerHTML;
-            this._karmaPoints = contentHtmlString.trim().replace('\n', '');
+            let karmaPoints       = parseInt(contentHtmlString.trim().replace('\n', ''));
+            this._karmaPoints     = isNaN(karmaPoints) ? 0 : parseInt(karmaPoints);
         }
 
         console.log(`totalCells: ${totalCells} ${this._karmaPoints}`);
