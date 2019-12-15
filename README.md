@@ -26,3 +26,7 @@ This page will scrape `ycombinator` news page to get top stories and top authors
 1. `localhost:3000/sort/comments/desc` to get results in descending order sortted by comment count.
 1. `localhost:3000/sort/authors/asc` to get results in ascending order sorted by author karma points.
 1. `localhost:3000/sort/authors/desc` to get results in descending order sortted by author karma points.
+
+# Caching results
+
+- Please note that after scraping, the results are stored on a file called `output.json`. The above endpoints that sort the results will be based on the output saved in that file. So it won't be latest. To get recent list, please trigger scraping task again to fetch fresh results.
